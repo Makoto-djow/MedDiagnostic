@@ -1,0 +1,26 @@
+<!doctype html>
+{% load static %}
+<html lang="ru" data-bs-theme="auto">
+  <head><script src="{% static 'js/color-modes.js' %}"></script>
+      {% include 'catalog/includes/inc_menu.html' %}
+  </head>
+<body>
+	<link rel="canonical" href="https://bootstrap-4.ru/docs/5.3/examples/navbars-offcanvas/">
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<main>
+      <div class="container">
+          <div class="bg-body-tertiary p-5 rounded">
+          {% block description %}
+          {% endblock %}
+          </div>
+      </div>
+    <div class="container test-center">
+        <p class="fs-5 text-center">
+            <a class="btn btn-warning" href="{% url 'catalog:feedback' %}" role="button">Форма для обратной связи</a>
+        </p>
+      </div>
+	{% include 'catalog/includes/info_menu.html' %}
+</main>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+{% extends 'catalog/base.html' %}
+{% block appointment %}
+<div class="album py-5 bg-body-tertiary">
+    <div class="container bg-primary">
+      <div class="col-sm-4 py-5 mx-auto">
+        <div class="col">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <p class="card-text fs-2 text-center">{{ object.name }}</p>
+              <p class="card-text fs-6 ">{{ object.name_service }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group col-sm-4 py-5 mx-auto">
+                  <a class="btn btn-danger text-center" href="{% url 'users:appointment_list' %}" role="button">Назад</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

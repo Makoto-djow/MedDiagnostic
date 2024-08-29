@@ -1,0 +1,29 @@
+{% extends 'description/about_the_company.html' %}
+{% load my_tags %}
+{% block dr %}
+<div class="album py-5 bg-body-tertiary">
+    <div class="container bg-primary">
+      <div class="col-sm-4 py-5 mx-auto">
+        <div class="col">
+          <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="container">
+                    <div class="bg-body-tertiary p-5 rounded">
+                        <img src="{{ doctor.photo | media_filter }}"  class="img-fluid w-auto">
+                    </div>
+                </div>
+                <p class="card-text fs-4 text-center">{{ object.lastname }} {{ object.name }} {{ object.patronymic }}</p>
+                <p class="card-text fs-5 text-center">{{ object.description }}</p>
+                <p class="card-text fs-4">Специализация: {{ object.specialization }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group col-sm-4 py-5 mx-auto">
+                        <a class="btn btn-dark text-center" href="{% url 'description:doctor_list' %}" role="button">Назад</a>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}

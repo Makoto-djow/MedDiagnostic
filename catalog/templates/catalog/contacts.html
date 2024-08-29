@@ -1,0 +1,92 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    {% include 'catalog/includes/inc_menu.html' %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Контакты</h1>
+</div>
+<div class="container">
+    <div class="col-sm-8 py-5 mx-auto">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal text-center">Адрес</h4>
+        </div>
+        <div class="row text-start">
+            <div class="col-lg-12 col-md-6 col-sm-12">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-body">
+                        <p class="fs-5 text-center">г Москва, 1-я Парковая улица, 5-7</p>
+                    </div>
+                    <div class="bg-body-tertiary p-5 rounded">
+                        <div class="col-sm-8 py-5 mx-auto">
+                            <div style="position:relative;overflow:hidden;">
+                                <a href="https://yandex.ru/maps/213/moscow/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">
+                                    Москва
+                                </a>
+                                <a href="https://yandex.ru/maps/213/moscow/house/1_ya_parkovaya_ulitsa_5_7/Z04YcQBnSEwDQFtvfXt4cX1iYA==/?ll=37.778556%2C55.789615&utm_medium=mapframe&utm_source=maps&z=17.06" style="color:#eee;font-size:12px;position:absolute;top:14px;">
+                                    1-я Парковая улица, 5-7 — Яндекс Карты
+                                </a>
+                                <iframe src="https://yandex.ru/map-widget/v1/?ll=37.778556%2C55.789615&mode=whatshere&whatshere%5Bpoint%5D=37.777277%2C55.790017&whatshere%5Bzoom%5D=17&z=17.06" width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="card-header">
+        <h4 class="my-0 font-weight-normal text-center">Контактная информация</h4>
+    </div>
+    <div class="row text-start">
+        <div class="col-lg-9 col-md-6 col-sm-12">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <td class="w-25">Номер телефона</td>
+                            <td>+79909990099</td>
+                        </tr>
+                        <tr>
+                            <td class="w-25">@email</td>
+                            <td>meddiagnostic@mail.ru</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Форма для связи</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="" class="form-floating">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name">Имя</label>
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Ваше имя" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone">Телефон</label>
+                            <input type="text" name="phone" class="form-control" id="phone" placeholder="Контактный телефон" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message">Сообщение</label>
+                            <textarea type="text" name="message" class="form-control" id="message" placeholder="Краткое описание проблемы" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-lg btn-block btn-outline-success text-center">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    {% include 'catalog/includes/info_menu.html' %}
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

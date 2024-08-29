@@ -1,0 +1,10 @@
+{% extends 'catalog/description_list.html' %}
+{% block servicescatalog %}
+<div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          {% for service_ in servicesc_ %}
+              <a class="btn btn-primary" href="{% url 'catalog:service_list' %}" role="button">{{ service_.service }}</a>
+          {% endfor %}
+      </div>
+</div>
+{% endblock %}

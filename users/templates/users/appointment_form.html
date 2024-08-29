@@ -1,0 +1,27 @@
+{% extends 'catalog/base.html' %}
+{% block appointment %}
+
+
+<div class="container">
+    <div class="col-sm-8 py-5 mx-auto">
+        <div class="card-header">
+            <h1 class="text-center">Запись на прием</h1>
+            <form method="post" action="" class="form-floating">
+                <div class="col-sm-6 py-5 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                </div>
+            </div>
+                </div>
+                <p class="fs-5 text-center">
+                <button type="submit" class="btn btn-lg btn-block btn-outline-success">Записаться</button>
+                <a href="{% url 'catalog:service_list' %}" class="btn btn-lg btn-block btn-outline-danger">Назад</a>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
