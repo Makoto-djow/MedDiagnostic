@@ -4,9 +4,10 @@
 
 <div class="container marketing">
         <hr class="featurette-divider">
-
+    {% if companies %}
     <div class="row featurette">
       <div class="col-md-7">
+
             <h2 class="featurette-heading fw-normal lh-1">{{ companies.0.heading }}</h2>
             <p class="lead">{{ companies.0.description }}</p>
       </div>
@@ -72,6 +73,7 @@
 
     </div>
 </div>
+{% endif %}
     <hr class="featurette-divider">
 
 
