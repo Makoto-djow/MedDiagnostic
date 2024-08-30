@@ -8,17 +8,53 @@
 	<link rel="canonical" href="https://bootstrap-4.ru/docs/5.3/examples/navbars-offcanvas/">
 <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 <main>
-      <div class="container">
-          <div class="bg-body-tertiary p-5 rounded">
-          {% block description %}
-          {% endblock %}
-          </div>
-      </div>
-    <div class="container test-center">
+
+<h1 class="text-center">Услуги</h1>
+<div class="container">
+    <div class="row">
+        {% for service in services %}
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h4>{{ service.service_name }}</h4>
+                </div>
+                <div class="card-body">
+                    <a class="btn btn-primary" href="{% url 'catalog:service_list' %}" role="button">Перейти</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container my-5">
+    {% for content in descriptions %}
+    <div class="bg-body-tertiary p-5 rounded">
+      <div class="col-sm-8 py-5 mx-auto">
+        <h1 class="display-5 fw-normal text-center">{{ content.description_title }}</h1>
         <p class="fs-5 text-center">
-            <a class="btn btn-warning" href="{% url 'catalog:feedback' %}" role="button">Форма для обратной связи</a>
+            {{ content.description }}
         </p>
-      </div>
+    </div>
+        <div class="text-center">
+        <div class="text-center">
+                  {% if perms.catalog.can_edit_description_title and perms.description.can_edit_description or user.is_superuser %}
+                  <a class="btn btn-primary" href="{% url 'catalog:description_update' content.pk %}" role="button">Редактировать описание</a>
+                    {% endif %}
+        </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% if perms.catalog.can_edit_price and perms.catalog.can_edit_description or user.is_superuser %}
+    {% if descriptions|length < 1 %}
+<p class="fs-5 text-center">
+    <a class="btn btn-success" href="{% url 'catalog:description_create' %}" role="button">Создать описание</a>
+    {% endif %}
+    {% endif %}
+</p>
+
+  </div>
+
 	{% include 'catalog/includes/info_menu.html' %}
 </main>
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>

@@ -24,22 +24,6 @@
                 </p>
             </div>
         </div>
-        <div class="col-6 py-5 mx-auto">
-            <div class="card">
-                <p class="card-text fs-3 text-center">Кнопка для каталога</p>
-                <div class="card-body">
-                    {{ formset.management_form }}
-                    {% for form in formset.forms %}
-                    {{ form.as_p }}
-                    {% endfor %}
-                </div>
-                                <p class="text-center">
-                    <button type="submit" class="btn btn-success">
-                        Создать
-                    </button>
-                </p>
-            </div>
-        </div>
     </form>
 </div>
 {% endblock %}

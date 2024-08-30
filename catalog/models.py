@@ -33,15 +33,3 @@ class Description(models.Model):
 
     def __str__(self):
         return f"{self.description_title}"
-
-
-class ServicesCatalog(models.Model):
-
-    service = models.ForeignKey(Services, on_delete=models.CASCADE, verbose_name="Название услуги", default=None)
-
-    class Meta:
-        verbose_name = "Услуга из каталога"
-        verbose_name_plural = "Услуги из каталога"
-
-    def __str__(self):
-        return f"{self.service}"

@@ -1,5 +1,8 @@
 from django.forms import ModelForm, BooleanField
-from catalog.models import Services, Description, ServicesCatalog
+from catalog.models import (
+    Services,
+    Description,
+)
 
 
 class StyleFormMixin:
@@ -34,9 +37,3 @@ class DescriptionModeratorForm(StyleFormMixin, ModelForm):
     class Meta:
         model = Description
         fields = ("description_title", "description")
-
-
-class ServicesCatalogForm(StyleFormMixin, ModelForm):
-    class Meta:
-        model = ServicesCatalog
-        fields = '__all__'

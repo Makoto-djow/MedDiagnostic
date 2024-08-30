@@ -16,15 +16,15 @@ from description.views import (
 app_name = DescriptionConfig.name
 
 urlpatterns = [
-    path("description/list", DoctorsListView.as_view(), name="doctor_list"),
-    path("description/<int:pk>/", DoctorsDetailView.as_view(), name="doctor_detail"),
-    path("description/create", DoctorsCreateView.as_view(), name="doctor_create"),
-    path("description/<int:pk>/update/", DoctorsUpdateView.as_view(), name="doctor_update"),
-    path("description/<int:pk>/delete", DoctorsDeleteView.as_view(), name="doctor_delete"),
+    path("doctors/list", DoctorsListView.as_view(), name="doctor_list"),
+    path("doctors/<int:pk>/", DoctorsDetailView.as_view(), name="doctor_detail"),
+    path("doctors/create", DoctorsCreateView.as_view(), name="doctor_create"),
+    path("doctors/<int:pk>/update/", DoctorsUpdateView.as_view(), name="doctor_update"),
+    path("doctors/<int:pk>/delete", DoctorsDeleteView.as_view(), name="doctor_delete"),
 
-    path("company_list/", CompanyListView.as_view(), name="company_list"),
-    path("company_create/", CompanyCreateView.as_view(), name="company_create"),
-    path("company_update/<int:pk>/", CompanyUpdateView.as_view(), name="company_update"),
+    path("company/list", CompanyListView.as_view(), name="company_list"),
+    path("company/create", CompanyCreateView.as_view(), name="company_create"),
+    path("company/<int:pk>/update/", CompanyUpdateView.as_view(), name="company_update"),
 
     path('', about_the_company, name='about_the_company'),
 ]

@@ -7,14 +7,24 @@ from django.views.generic import (
     DeleteView,
 )
 
-from catalog.forms import ServiceForm, ServiceModeratorForm, DescriptionForm, DescriptionModeratorForm, \
-    ServicesCatalogForm
-from catalog.models import Services, Description, ServicesCatalog
+from catalog.forms import (
+    ServiceForm,
+    ServiceModeratorForm,
+    DescriptionForm,
+    DescriptionModeratorForm,
+    # ServicesCatalogForm
+)
+from catalog.models import (
+    Services,
+    Description,
+    # ServicesCatalog
+)
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 
 from django.forms import inlineformset_factory
+
 
 class ServicesListView(ListView):
     model = Services
@@ -42,26 +52,6 @@ class ServicesUpdateView(LoginRequiredMixin, UpdateView):
         if user.has_perm("catalog.can_edit_price") and user.has_perm("catalog.can_edit_description"):
             return ServiceModeratorForm
         raise PermissionDenied
-
-    def get_context_data(self, **kwargs):
-        context_data = super().get_context_data(**kwargs)
-        ServiceFormset = inlineformset_factory(Services, ServicesCatalog, ServicesCatalogForm, extra=1)
-        if self.request.method == 'POST':
-            context_data["formset"] = ServiceFormset(self.request.POST, instance=self.object)
-        else:
-            context_data["formset"] = ServiceFormset(instance=self.object)
-        return context_data
-
-    def form_valid(self, form):
-        context_data = self.get_context_data()
-        formset = context_data["formset"]
-        if form.is_valid() and formset.is_valid():
-            self.object = form.save()
-            formset.instance = self.object
-            formset.save()
-            return super().form_valid(form)
-        else:
-            return self.render_to_response(self.get_context_data(form=form, formset=formset))
 
 
 class ServicesDeleteView(DeleteView):
@@ -98,24 +88,25 @@ def feedback(request):
 
 
 def main_page(request):
-    return render(request, 'catalog/main_page.html')
-
-
-class DescriptionListView(ListView):
-    model = Description
-    context_object_name = 'main_description'
+    services = Services.objects.all()
+    descriptions = Description.objects.all()
+    context = {
+        'services': services,
+        'descriptions': descriptions,
+    }
+    return render(request, 'catalog/main_page.html', context=context)
 
 
 class DescriptionCreateView(CreateView):
     model = Description
     form_class = DescriptionForm
-    success_url = reverse_lazy("catalog:description_list")
+    success_url = reverse_lazy("catalog:main_page")
 
 
 class DescriptionUpdateView(UpdateView):
     model = Description
     form_class = DescriptionForm
-    success_url = reverse_lazy("catalog:description_list")
+    success_url = reverse_lazy("catalog:main_page")
 
     def get_form_class(self):
         user = self.request.user
@@ -124,30 +115,4 @@ class DescriptionUpdateView(UpdateView):
         if user.has_perm("catalog.can_edit_heading") and user.has_perm("catalog.can_edit_description") and user.has_perm("catalog.can_edit_image"):
             return DescriptionModeratorForm
         raise PermissionDenied
-
-
-class ServicesCatalogListView(ListView):
-    model = ServicesCatalog
-    context_object_name = 'servicesc_'
-
-
-class ServicesCatalogDetailView(DetailView):
-    model = ServicesCatalog
-
-
-class ServicesCatalogCreateView(CreateView):
-    model = ServicesCatalog
-    form_class = ServicesCatalogForm
-    success_url = reverse_lazy("catalog:servicescatalog_list")
-
-
-class ServicesCatalogUpdateView(LoginRequiredMixin, UpdateView):
-    model = ServicesCatalog
-    form_class = ServicesCatalogForm
-    success_url = reverse_lazy("catalog:servicescatalog_list")
-
-
-class ServicesCatalogDeleteView(DeleteView):
-    model = ServicesCatalog
-    success_url = reverse_lazy("catalog:servicescatalog_list")
 
