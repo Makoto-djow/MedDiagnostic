@@ -1,0 +1,29 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+<div class="container bg-primary">
+    <form class="row" method="post" enctype="multipart/form-data">
+        <div class="col-sm-6 py-5 mx-auto">
+            <div class="card">
+                {% if object %}
+                <p class="card-text fs-3 text-center">Редактирование услуги</p>
+                {% else %}
+                <p class="card-text fs-3 text-center">Создание услуги</p>
+                {% endif %}
+                <div class="card-body">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                </div>
+                <p class="text-center">
+                    <button type="submit" class="btn btn-success">
+                        {% if object %}
+                        Сохранить
+                        {% else %}
+                        Создать
+                        {% endif %}
+                    </button>
+                </p>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

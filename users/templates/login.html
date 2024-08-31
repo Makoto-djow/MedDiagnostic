@@ -1,0 +1,22 @@
+{% extends 'catalog/base.html' %}
+{% block content_login %}
+
+<div class="container">
+    <form class="row" method="post" enctype="multipart/form-data">
+        <div class="col-sm-6 py-5 mx-auto">
+            <div class="card">
+                <div class="card-body mx-auto">
+                    <h1 class="fw-normal text-center">Вход</h1>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                </div>
+                <p class="text-center">
+                    <button type="submit" class="btn btn-primary">
+                        Войти
+                    </button>
+                </p>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

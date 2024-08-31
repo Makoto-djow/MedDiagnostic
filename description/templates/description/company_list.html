@@ -1,0 +1,81 @@
+{% extends 'description/about_the_company.html' %}
+{% load my_tags %}
+{% block company %}
+
+<div class="container marketing">
+        <hr class="featurette-divider">
+    {% if companies %}
+    <div class="row featurette">
+      <div class="col-md-7">
+
+            <h2 class="featurette-heading fw-normal lh-1">{{ companies.0.heading }}</h2>
+            <p class="lead">{{ companies.0.description }}</p>
+      </div>
+      <div class="col-md-5">
+            <img src="{{ companies.0.image | media_filter }}" class="img-fluid w-auto" />
+      </div>
+
+<div class="container text-center">
+          <div class="bg-body-tertiary p-5 rounded">
+
+          {% if perms.description.can_edit_heading and perms.description.can_edit_description or user.is_superuser %}
+                  <a class="btn btn-primary" href="{% url 'description:company_update' companies.0.pk %}" role="button">Редактировать описание</a>
+                    {% endif %}
+          </div>
+      </div>
+
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading fw-normal lh-1">{{ companies.1.heading }}</h2>
+            <p class="lead">{{ companies.1.description }}</p>
+      </div>
+      <div class="col-md-5 order-md-1">
+            <img src="{{ companies.1.image | media_filter}}" class="img-fluid img-thumbnail" />
+      </div>
+
+
+
+    </div>
+        <div class="container text-center">
+          <div class="bg-body-tertiary p-5 rounded">
+
+          {% if perms.description.can_edit_heading and perms.description.can_edit_description or user.is_superuser %}
+                  <a class="btn btn-primary" href="{% url 'description:company_update' companies.1.pk %}" role="button">Редактировать описание</a>
+                    {% endif %}
+          </div>
+      </div>
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+            <h2 class="featurette-heading fw-normal lh-1">{{ companies.2.heading }}</h2>
+            <p class="lead">{{ companies.2.description }}</p>
+      </div>
+      <div class="col-md-5">
+            <img src="{{ companies.2.image | media_filter}}" class="img-fluid w-auto" />
+
+
+      </div>
+
+        <div class="container text-center">
+          <div class="bg-body-tertiary p-5 rounded">
+
+          {% if perms.description.can_edit_heading and perms.description.can_edit_description or user.is_superuser %}
+                  <a class="btn btn-primary" href="{% url 'description:company_update' companies.2.pk %}" role="button">Редактировать описание</a>
+                    {% endif %}
+          </div>
+
+      </div>
+
+    </div>
+</div>
+{% endif %}
+    <hr class="featurette-divider">
+
+
+
+{% endblock %}

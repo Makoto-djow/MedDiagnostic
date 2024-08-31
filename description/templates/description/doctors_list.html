@@ -1,0 +1,39 @@
+{% extends 'description/about_the_company.html' %}
+{% load my_tags %}
+{% block dr %}
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for doctor in doctors %}
+        <div class="col-md-4 col-lg-4">
+          <div class="card shadow-sm">
+            <div class="card-body">
+                <img src="{{ doctor.photo | media_filter }}"  class="img-fluid w-auto">
+              <p class="card-text fs-3 text-center">{{ doctor.lastname }} {{ doctor.name }} {{ doctor.patronymic }}</p>
+                <p class="card-text fs-3 text-center">{{ doctor.specialization }}</p>
+              <div class="d-flex justify-content-between align-items-center ">
+                  <a class="btn btn-primary" href="{% url 'description:doctor_detail' doctor.pk %}" role="button">Просмотр</a>
+                  {% if perms.description.can_edit_specialization and perms.description.can_edit_description or user.is_superuser %}
+                  <a class="btn btn-primary" href="{% url 'description:doctor_update' doctor.pk %}" role="button">Редактировать</a>
+                  <a class="btn btn-primary" href="{% url 'description:doctor_delete' doctor.pk %}" role="button">Удалить</a>
+                  {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+                 <div class="container text-center">
+          <div class="bg-body-tertiary p-5 rounded">
+              {% if perms.description.can_edit_specialization and perms.description.can_edit_description or user.is_superuser %}
+    <p class="fs-5 text-center">
+        <a class="btn btn-success" href="{% url 'description:doctor_create' %}" role="button">Создать сотрудника</a>
+        {% endif %}
+    </p>
+
+          </div>
+                 </div>
+
+{% endblock %}
